@@ -23,6 +23,8 @@ services:
       - 8000:8000
     profiles:
       - dev
+    command: >
+      sh -c "python app/manage.py runserver 0.0.0.0:8000"
 
   recipe-prod:
     <<: *APP_TEMPLATE
@@ -31,3 +33,5 @@ services:
       - 8080:8080
     profiles:
       - prod
+    command: >
+      sh -c "python app/manage.py runserver 0.0.0.0:8080"
