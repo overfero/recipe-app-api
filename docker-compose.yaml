@@ -1,0 +1,33 @@
+version: "0.0"
+
+x-app-template: &APP_TEMPLATE
+  user: "${USER_ID:-1000}"
+  hostname: "${HOST_NAME:-overfero}"
+  image: recipe-app-api
+  build:
+    context: .
+    dockerfile: ./Dockerfile
+    args:
+      USER_NAME: "${USERNAME:-overfero}"
+      USER_ID: "${USER_ID:-1000}"
+  volumes:
+    - ./:/app/
+  ipc: host
+  init: true
+
+services:
+  recipe-dev:
+    <<: *APP_TEMPLATE
+    container_name: recipe-dev-container
+    ports:
+      - 8000:8000
+    profiles:
+      - dev
+
+  recipe-prod:
+    <<: *APP_TEMPLATE
+    container_name: recipe-prod-container
+    ports:
+      - 8080:8080
+    profiles:
+      - prod
