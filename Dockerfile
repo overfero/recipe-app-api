@@ -13,8 +13,8 @@ ENV \
     BUILD_POETRY_LOCK="${HOME}/poetry.lock.build"
 
 RUN apt-get -qq update \
-    && apt-get -qq -y install curl \
-    && rm -rf /bar/lib/apt/lists/* \
+    && apt-get -qq -y install curl make \
+    && rm -rf /var/lib/apt/lists/* \
     && apt-get -qq -y clean
 
 RUN addgroup --system --gid ${USER_ID} ${USER_NAME} \

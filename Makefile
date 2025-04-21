@@ -61,10 +61,10 @@ check-type-annotations: up
 
 ## Run tests with pytest
 test:
-	$(DOCKER_COMPOSE_EXEC) pytest
+	$(DOCKER_COMPOSE_RUN) sh -c "python app/manage.py test"
 
 #Perform a full check
-full-check: lint check-type-annotations test
+full-check: lint check-type-annotations
 	$(DOCKER_COMPOSE_EXEC) pytest --cov --cov-report xml --verbose
 
 ## Builds docker image

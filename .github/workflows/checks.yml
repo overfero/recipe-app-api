@@ -16,6 +16,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Test
-        run: docker compose run --rm recipe-dev sh -c "python app/manage.py test"
+        run: make test
       - name: Lint
-        run: docker compose run --rm recipe-dev sh -c "make full-check"
+        run: make full-check
